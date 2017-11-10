@@ -1,6 +1,6 @@
 # Elando Functions
 
-## Add Function
+## Add new function
 
 ```
 $ cd functions
