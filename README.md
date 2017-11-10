@@ -1,4 +1,5 @@
-# Elando App
+# Elando
+`Elando` is a blockchain based platform enhances the motivation of community activities and technologists participating in it. It also provides consistent values across multiple different communities.
 
 ## Install CLIs
 - [faas-cli](https://github.com/openfaas/faas-cli) is a CLI for use with [OpenFaaS](https://github.com/openfaas/faas).
