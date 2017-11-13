@@ -1,0 +1,18 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  new-account:
+    lang: node
+    handler: ./new-account
+    image: elando/functions:new-account
+    environment_file:
+      - environments.yml
+  get-balance:
+    lang: node
+    handler: ./get-balance
+    image: elando/functions:get-balance
+    environment_file:
+      - environments.yml
+
