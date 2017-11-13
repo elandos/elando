@@ -1,0 +1,11 @@
+provider:
+  name: faas
+  gateway: http://localhost:8080
+
+functions:
+  get-eth-balance:
+    lang: node
+    handler: ./get-eth-balance
+    image: get-eth-balance
+    environment_file:
+      - env.local.yml
