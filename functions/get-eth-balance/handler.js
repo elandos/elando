@@ -8,7 +8,7 @@ const web3 = new Web3(new Web3.providers.HttpProvider(`http://${process.env.eth_
 module.exports = (context, callback) => {
     const body = querystring.parse(context);
     if(!body.address) {
-        callback(undefined, {error: 'address is empty.'});
+        callback(undefined, {error: 'invalid param #=> address'});
         return;
     }
 
