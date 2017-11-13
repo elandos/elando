@@ -7,17 +7,18 @@ const web3 = new Web3(new Web3.providers.HttpProvider(`http://${process.env.eth_
 
 module.exports = (context, callback) => {
     const body = querystring.parse(context);
-    if(!body.password) {
-        callback(undefined, {error: 'password is empty.'});
+    if(!body.address) {
+        callback(undefined, {error: 'address is empty.'});
         return;
     }
 
-    const password = body.password.trim();
-    web3.eth.personal.newAccount(password, (err, result) => {
+    const address = body.address.trim();
+    web3.eth.getBalance(address, (err, result) => {
         if(err != null) {
             callback(undefined, err);
         }else {
-            callback(undefined, {address: result});
+            const amount = result.valueOf();
+            callback(undefined, {amount: amount, unit: 'wei'});
         }
     });
 }
