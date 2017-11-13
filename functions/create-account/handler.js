@@ -1,12 +1,19 @@
 "use strict"
 
 const Web3 = require("web3");
+
 const web3 = new Web3(new Web3.providers.HttpProvider(`http://${process.env.eth_host}:8545`));
 const querystring = require('querystring');
 
 module.exports = (context, callback) => {
     const body = querystring.parse(context);
+    
     web3.eth.personal.newAccount(body.password, (err, result) => {
-        callback(undefined, result);
+        if(err != null) {
+            consolo.log(err);
+            callback(undefined, err);
+        }else {
+            callback(undefined, {address: result});
+        }
     });
 }

@@ -1,6 +1,6 @@
 FROM node:8-alpine
 
-RUN addgroup -S app && adduser -S -g app app
+# RUN addgroup -S app && adduser -S -g app app
 
 # Alternatively use ADD https:// (which will not be cached by Docker builder)
 RUN apk --no-cache add curl git python gcc make g++ file \
@@ -17,28 +17,37 @@ ENV NPM_CONFIG_LOGLEVEL warn
 RUN mkdir -p /home/app
 
 # Wrapper/boot-strapper
-COPY package.json       /home/app
-
 WORKDIR /home/app
+COPY package.json ./
+
+# This ordering means the npm installation is cached for the outer function handler.
 RUN npm i
 
-# Function
-COPY index.js           /home/app
+# Copy outer function handler
+COPY index.js ./
 
-COPY function/*.json    /home/app/function/
+# COPY function node packages and install, adding this as a separate
+# entry allows caching of npm install
 WORKDIR /home/app/function
+COPY function/*.json ./
 RUN npm i || :
-WORKDIR /home/app/
-COPY function           ./function
-RUN chown app:app -R /home/app \
-    && chown 777 /tmp
 
-USER app
+# COPY function files and folders
+COPY function/ ./
+
+# Set correct permissions to use non root user
+WORKDIR /home/app/
+
+# chmod for tmp is for a buildkit issue (@alexellis)
+# RUN chown app:app -R /home/app \
+#     && chmod 777 /tmp
+
+# USER app
 
 ENV cgi_headers="true"
-
 ENV fprocess="node index.js"
 
 HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
 
 CMD ["fwatchdog"]
+
