@@ -1,5 +1,9 @@
 # Elando Functions
 
+## Setup OpenFaas
+
+See #=> https://github.com/openfaas/faas/blob/master/guide/deployment_swarm.md
+
 ## Add new function
 
 ```
@@ -7,6 +11,12 @@ $ cd functions
 $ faas-cli new FUNCTION_NAME --lang node
 $ cd FUNCTION_NAME
 $ npm install
+```
+## Build & Deply & Invoke
+
+```
+$ faas-cli build --filter FUNCTION_NAME -f functions.yml && faas-cli deploy --filter FUNCTION_NAME -f functions.yml
+$ faas-cli invoke FUNCTION_NAME
 ```
 
 ## Functions
