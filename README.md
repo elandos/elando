@@ -20,9 +20,7 @@
 
 1. Run testrpc
 
-```
-$ testrpc
-```
+See #=> https://github.com/elandos/elando/tree/master/dapp
 
 2. Deploy DApp
 
