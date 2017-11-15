@@ -21,10 +21,10 @@ functions:
     image: elando/functions:get-transactions
     environment_file:
       - environments.yml
-  send-tracsaction:
+  send-transaction:
     lang: node
-    handler: ./send-tracsaction
-    image: elando/functions:send-tracsaction
+    handler: ./send-transaction
+    image: elando/functions:send-transaction
     environment_file:
       - environments.yml
 

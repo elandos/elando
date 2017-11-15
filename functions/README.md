@@ -50,6 +50,6 @@ out: {"data": [{"hash":"...","nonce":0,"blockHash":"...","blockNumber":1,"transa
 
 ```
 $ faas-cli invoke send-transaction
-in: from=XXXXXXXXXXXXXXXX to=XXXXXXXXXXXXXXXX value=99999999
-out: {"data": {"transaction": "XXXXXXXXXXXXXXXX"}}
+in: from=XXXXXXXX&to=XXXXXXXX&value=99999999
+out: {"data":{"hash":"...","nonce":2,"blockHash":"...","blockNumber":7,"transactionIndex":0,"from":"...","to":"...","value":"1000","gas":90000,"gasPrice":"20000000000","input":"0x0"}}
 ```
