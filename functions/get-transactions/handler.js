@@ -28,11 +28,11 @@ module.exports = (context, callback) => {
             .map((hash) => { return promisify(web3.eth.getTransaction.bind(web3.eth))(hash); });
         return Promise.all(transactions);
     }).then(txs => {
-        let filtered = txs.filter((t) => {
+        const filtered = txs.filter((t) => {
             return (address == "*" || t.from.toLowerCase() == address || t.to.toLowerCase() == address);
         });
-        callback(undefined, { transactions: filtered });
+        callback(undefined, {data: filtered});
     }).catch(err => {
-        console.log(err);
+        callback(undefined, err);
     });
 }

@@ -33,7 +33,7 @@ out: {"data": {"amount": 99999999, "unit": "wei"}}
 ```
 $ faas-cli invoke get-transactions
 in: address=XXXXXXXXXXXXXXXX
-out: {"data": [{}, {}]}
+out: {"data": [{"hash":"...","nonce":0,"blockHash":"...","blockNumber":1,"transactionIndex":0,"from":"...","to":"...","value":"...","gas":90000,"gasPrice":"1","input":"0x0"}]}
 ```
 
 ### sendTransaction(from, to, value)
