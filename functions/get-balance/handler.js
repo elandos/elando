@@ -1,6 +1,7 @@
 "use strict"
 
 const querystring = require('querystring');
+const { promisify } = require('util');
 
 const Web3 = require("web3");
 const web3 = new Web3(new Web3.providers.HttpProvider(`http://${process.env.eth_host}:8545`));
@@ -13,12 +14,10 @@ module.exports = (context, callback) => {
     }
 
     const address = body.address.trim();
-    web3.eth.getBalance(address, (err, result) => {
-        if(err != null) {
-            callback(undefined, err);
-        }else {
-            const amount = result.valueOf();
-            callback(undefined, {amount: amount, unit: 'wei'});
-        }
+    promisify(web3.eth.getBalance.bind(web3.eth))(address).then(balance => {
+        const amount = balance.valueOf();
+        callback(undefined, {data: {amount: amount, unit: 'wei'}});
+    }).catch(err => {
+        callback(undefined, err);
     });
 }
