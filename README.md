@@ -40,5 +40,5 @@ $ faas-cli build -f functions.yml
 $ faas-cli deploy -f functions.yml
 $ faas-cli invoke create_account
 password=hogehoge1 #=> input
-0xBfEFf66781fa2789bE8d6AaBF6b89F0BEc535E53 #=> output
+{"data": {"address": "XXXXXXXXXXXXXXXX"}} #=> output
 ```
