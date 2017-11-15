@@ -15,8 +15,8 @@ module.exports = (context, callback) => {
 
     const address = body.address.trim();
     promisify(web3.eth.getBalance.bind(web3.eth))(address).then(balance => {
-        const amount = balance.valueOf();
-        callback(undefined, {data: {amount: amount, unit: 'wei'}});
+        const value = balance.valueOf();
+        callback(undefined, {data: {value: value, unit: 'wei'}});
     }).catch(err => {
         callback(undefined, err);
     });
