@@ -34,7 +34,7 @@ out: {"data": {"address": "XXXXXXXXXXXXXXXX"}}
 ```
 $ faas-cli invoke get-balance
 in: address=XXXXXXXXXXXXXXXX
-out: {"data": {"amount": 99999999, "unit": "wei"}}
+out: {"data": {"value": 99999999, "unit": "wei"}}
 ```
 
 
